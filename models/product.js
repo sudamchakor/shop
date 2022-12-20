@@ -13,8 +13,8 @@ const getProductsFromFile = (cb) => {
 }
 
 module.exports = class Product {
-    constructor(title, imageUrl, description, price) {
-        this.id = Date.now();
+    constructor(id, title, imageUrl, description, price) {
+        this.id = id;
         this.title = title;
         this.imageUrl = imageUrl;
         this.description = description;
@@ -23,10 +23,20 @@ module.exports = class Product {
 
     save() {
         getProductsFromFile(products => {
-            products.push(this);
-            fs.writeFile(p, JSON.stringify(products), err => {
-                console.log("Error Writing file", err);
-            });
+            if (this.id) {
+                const exisitngProductIndex = products.findIndex(prod => prod.id == this.id)
+                const updatedProducts = [...products];
+                updatedProducts[exisitngProductIndex] = this;
+                fs.writeFile(p, JSON.stringify(updatedProducts), err => {
+                    console.log("Error Writing file", err);
+                });
+            } else {
+                this.id = Date.now();
+                products.push(this);
+                fs.writeFile(p, JSON.stringify(products), err => {
+                    console.log("Error Writing file", err);
+                });
+            }
         });
     }
 
