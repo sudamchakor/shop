@@ -2,5 +2,12 @@
 </head>
 <body>
     <%- include('../includes/navigation.ejs')%>
-    
+    <h1><%= product.title %></h1>
+    <div>
+        <img class="w-100" src="<%= product.imageUrl %>" alt="Product Image">
+    </div>
+    <h2 class="py-3">Price: $<%= product.price%></h2>
+    <hr>
+    <p><%= product.description%></p>
+    <%- include('../includes/add-to-cart.ejs') %>
 <%- include('../includes/end.ejs') %>
