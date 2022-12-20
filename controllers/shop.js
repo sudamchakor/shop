@@ -70,3 +70,30 @@ exports.getOrders = (req, res, next) => {
         });
     });
 }
+
+exports.getCart = (req, res, next) => {
+    cart.getCart(cart => {
+        Product.fetchAll(products => {
+            const cartProducts = []
+            for (product of products) {
+                const cartProd = cart.products.find(prod => prod.id == product.id)
+                if (cartProd) {
+                    cartProducts.push({ productData: product, qty: cartProd.qty });
+                }
+            }
+            res.render('shop/cart', {
+                path: '/cart',
+                docTitle: "Cart",
+                products: cartProducts
+            })
+        })
+    })
+}
+
+exports.postCartDeleteItem = (req, res, next) => {
+    const productId = req.body.productId;
+    Product.findById(productId, product => {
+        cart.deleteProduct(productId, product.price);
+        res.redirect('/cart');
+    })
+}
