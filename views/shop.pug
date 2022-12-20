@@ -1,0 +1,16 @@
+extends layouts/main-layout.pug
+block content
+    h1 My Products
+    if(prods.length>0)
+        each product in prods
+            .grid
+                .card.w-25
+                    img.card-img-top(src="", alt="")
+                    .card-body
+                        h5.card-title #{product.title}
+                        p.content Card content
+                    .card-footer
+                        button.btn.btn-outline-success Add To Cart
+    else
+        h3 No Products found
+                

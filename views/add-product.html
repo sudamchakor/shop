@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Add Product</title>
+		<link rel="stylesheet" href="/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/css/main.css" />
+		<link rel="stylesheet" href="/css/product.css" />
+	</head>
+	<body>
+		<header class="main-header">
+			<nav class="navbar navbar-expand-lg bg-darkgreen navbar-dark">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="/">Shop</a>
+					<button
+						class="navbar-toggler"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent"
+						aria-expanded="false"
+						aria-label="Toggle navigation"
+					>
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div
+						class="collapse navbar-collapse"
+						id="navbarSupportedContent"
+					>
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0 ml-auto">
+							<li class="nav-item">
+								<a
+									class="nav-link active"
+									aria-current="page"
+									href="/shop"
+									>Shop</a
+								>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/admin/add-product"
+									>Add Product</a
+								>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<main class="container mt-3">
+			<h3>Add Product</h3>
+			<form
+				class="form-control w-50 mx-auto p-3"
+				action="/admin/add-product"
+				method="POST"
+			>
+				<div class="field-control">
+					<label for="'title">Product Title</label>
+					<input type="text" name="title" />
+				</div>
+
+				<button
+					class="btn btn-outline-primary w-100 text-capitalize"
+					type="submit"
+				>
+					Add Product
+				</button>
+			</form>
+		</main>
+	</body>
+</html>
