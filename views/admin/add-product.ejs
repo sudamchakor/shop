@@ -1,0 +1,33 @@
+<%- include('../includes/head.ejs') %> 
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+		<h3>Add Product</h3>
+		<form
+			class="form-control w-75 mx-auto p-3"
+			action="/admin/add-product"
+			method="POST"
+		>
+			<div class="mb-3">
+				<label class="form-label" for="'title">Product Title</label>
+				<input class="form-control" type="text" name="title" id="title" />
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="'imageUrl">Image Url</label>
+				<input class="form-control" type="url" name="imageUrl" id="imageUrl" />
+			</div>			
+			<div class="mb-3">
+				<label class="form-label" for="'price">Price</label>
+				<input class="form-control" type="number" name="price" id="price" step="0.01" />
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="'description">Description</label>
+				<textarea class="form-control" rows="5" name="description" id="description"></textarea>
+			</div>
+			<div class="mb-3">
+				<button class="btn btn-outline-primary w-100 text-capitalize" type="submit" >
+					Add Product
+				</button>
+			</div>
+		</form>
+<%- include('../includes/end.ejs') %>
