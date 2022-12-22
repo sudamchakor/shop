@@ -2,9 +2,10 @@
 </head>
 <body>
     <%- include('../includes/navigation.ejs') %>
+	
 		<h3><% if(editing){%>Update Product<%}else{%>Add Product<%}%></h3>
 		<form
-			class="form-control w-75 mx-auto p-3"
+			class="form-control p-3 mb-5 shadow-4-strong"
 			action="/admin/<%=editing?'edit':'add'%>-product"
 			method="POST"
 		>
@@ -28,7 +29,7 @@
                 <input type="hidden" name="productId" value="<%= product.id%>"/>
             <%}%>
 			<div class="mb-3">
-				<button class="btn btn-outline-primary w-100 text-capitalize" type="submit" >
+				<button class="btn btn-primary w-25 p-3 bg-custome-primary btn-custome" type="submit" >
 					<% if(editing){%>Update Product<%}else{%>Add Product<%}%>
 				</button>
 			</div>

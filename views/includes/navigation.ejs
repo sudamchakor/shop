@@ -1,5 +1,5 @@
 <header class="main-header">
-    <nav class="navbar navbar-expand-md bg-darkgreen navbar-dark">
+    <nav class="navbar navbar-expand-md bg-custome-primary navbar-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">Shop</a>
             <button
@@ -17,7 +17,7 @@
                 class="collapse navbar-collapse"
                 id="navbarSupportedContent"
             >
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ml-auto">
+                <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
                     <li class="nav-item">
                         <a class="nav-link <%= path==='/'?'active':''%>" href="/">
                             Shop
@@ -38,13 +38,13 @@
                             Orders
                         </a>
                     </li>
-                    <li class="nav-item <%= path==='admin/add-product'?'active':''%>">
-                        <a class="nav-link" href="/admin/add-product">
+                    <li class="nav-item">
+                        <a class="nav-link <%= path==='admin/add-product'?'active':''%>" href="/admin/add-product">
                             Add Product
                         </a>
                     </li>
-                    <li class="nav-item <%= path==='admin/admin-products'?'active':''%>">
-                        <a class="nav-link" href="/admin/admin-products">
+                    <li class="nav-item">
+                        <a class="nav-link <%= path==='admin/admin-products'?'active':''%>" href="/admin/admin-products">
                             Admin Products
                         </a>
                     </li>
@@ -53,4 +53,4 @@
         </div>
     </nav>
 </header>
-<main class="container mt-3">
+<main class="container">

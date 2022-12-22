@@ -2,5 +2,19 @@
 </head>
 <body>
     <%- include('../includes/navigation.ejs')%>
-    
+        <% if(orders.length>0){ %>
+            <ul>
+                <% orders.forEach(order=>{ %>
+                <h1>#<%=order.id%></h1>
+                <ul>
+                    <% order.products.forEach(product=>{ %>
+                        <li><%= product.title %> (<%= product.orderItem.quantity %>)</li>
+                <% }); %>
+                </ul>
+        <% }); %>
+
+            </ul>
+        <%}else{%>
+            <h1>No Orders</h1>
+        <% } %>
 <%- include('../includes/end.ejs') %>
