@@ -1,9 +1,10 @@
-const Product = require('../models/product')
+const Product = require('../models/product');
+const Orders = require('../models/order');
 // const cart = require('../models/cart');
 // const { where } = require('sequelize');
 
 exports.getProducts = (req, res, next) => {
-    Product.fetchAll().then(products => {
+    Product.find().then(products => {
         console.log(products);
         res.render('./shop/product-list', {
             prods: products,
@@ -16,7 +17,7 @@ exports.getProducts = (req, res, next) => {
 }
 
 exports.getIndex = (req, res, next) => {
-    Product.fetchAll().then(products => {
+    Product.find().then(products => {
         console.log(products);
         res.render('./shop/index', {
             prods: products,
@@ -43,16 +44,17 @@ exports.getProductsDetials = (req, res, next) => {
 }
 
 exports.getCart = (req, res, next) => {
-    req.user.getCart().then(products => {
-        console.log(products);
-        res.render('./shop/cart', {
-            products: products,
-            docTitle: 'Your Cart',
-            path: '/cart'
+    req.user.populate('cart.items.productId')
+        .then(user => {
+            const products = user.cart.items;
+            res.render('./shop/cart', {
+                products: products,
+                docTitle: 'Your Cart',
+                path: '/cart'
+            });
+        }).catch(err => {
+            console.log(err)
         });
-    }).catch(err => {
-        console.log(err)
-    });
 }
 
 exports.postCart = (req, res, next) => {
@@ -86,16 +88,31 @@ exports.updateCartItemQty = (req, res, next) => {
 }
 
 exports.createOrder = (req, res, next) => {
-    let fetchCart;
-    req.user.addOrder().then(result => {
-        res.redirect('/orders');
-    }).catch(err => {
-        console.log(err)
-    });
+    req.user.populate('cart.items.productId')
+        .then(user => {
+            const products = user.cart.items.map(i => {
+                return { quantity: i.quantity, product: { ...i.productId._doc } };
+            })
+
+            const order = new Orders({
+                user: {
+                    name: req.user.name,
+                    userId: req.user
+                },
+                products: products
+            });
+            return order.save();
+        }).then(result => {
+            return req.user.clearCart();
+        }).then(result => {
+            res.redirect('/orders');
+        }).catch(err => {
+            console.log(err)
+        });
 }
 
 exports.getOrders = (req, res, next) => {
-    req.user.getOrders().then(orders => {
+    Orders.find({ 'user.userId': req.user._id }).then(orders => {
         console.log(orders)
         res.render('./shop/orders', {
             orders: orders,
