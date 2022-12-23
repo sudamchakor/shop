@@ -26,7 +26,7 @@
 				<textarea class="form-control" rows="5" name="description" id="description"><%=editing?product.description:''%></textarea>
 			</div>
             <% if(editing){%>
-                <input type="hidden" name="productId" value="<%= product.id%>"/>
+                <input type="hidden" name="productId" value="<%= product._id%>"/>
             <%}%>
 			<div class="mb-3">
 				<button class="btn btn-primary w-25 p-3 bg-custome-primary btn-custome" type="submit" >
