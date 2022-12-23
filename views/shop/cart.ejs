@@ -20,13 +20,13 @@
                             </div>
                             <div class="d-flex flex-row align-items-center qty col-2">
                                 <form action="/cart-update-qty" method="POST" class="ms-auto">
-                                    <input type="hidden" name="productId" value="<%= p.id %>">
+                                    <input type="hidden" name="productId" value="<%= p._id %>">
                                     <input type="hidden" name="incrQty" value="false">
                                     <button type="submit" class="btn btn-light fa fa-minus text-danger"></button>
                                 </form>                                
-                                <span class="text-grey mx-2"><%= p.cartItem.quantity %></span>
+                                <span class="text-grey mx-2"><%= p.quantity %></span>
                                 <form action="/cart-update-qty" method="POST" class="ms-auto">
-                                    <input type="hidden" name="productId" value="<%= p.id %>">
+                                    <input type="hidden" name="productId" value="<%= p._id %>">
                                     <input type="hidden" name="incrQty" value="true">
                                     <button type="submit" class="btn btn-light fa fa-plus text-success"></button>
                                 </form>
@@ -36,11 +36,11 @@
                                 $<%= p.price %>
                             </div >
                             <div class="col-1">
-                                $<%= parseFloat(p.price * p.cartItem.quantity).toFixed(2) %>
+                                $<%= parseFloat(p.price * p.quantity).toFixed(2) %>
                             </div>
                             <div class="d-flex align-items-center col-1">
                                 <form action="/cart-delete-item" method="POST" class="ms-auto">
-                                    <input type="hidden" name="productId" value="<%= p.id %>">
+                                    <input type="hidden" name="productId" value="<%= p._id %>">
                                     <button type="submit" class="btn btn-light text-danger fa fa-trash">
                                     </button>
                                 </form> 
@@ -48,7 +48,7 @@
                             </div>
                         </div>
                     <% 
-                    total=p.price * p.cartItem.quantity + total;
+                    total=p.price * p.quantity + total;
                 }) %>
                 <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
                     <span>Total:</span>
