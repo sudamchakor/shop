@@ -1,0 +1,59 @@
+<%- include('../includes/head.ejs') %> 
+    </head>
+    <body>                                                                                                  
+        <%- include('../includes/navigation.ejs') %>
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col col-xl-10">
+              <div class="card" style="border-radius: 1rem;">
+                <div class="row g-0">
+                  <div class="col-md-6 col-lg-5 d-none d-md-block">
+                    <img src="http://localhost:3000/media/img/m5.jpg"
+                      alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                  </div>
+                  <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                    <div class="card-body p-4 p-lg-5">          
+                        <h2 class="fw-bold mb-5">Sign up now</h2>
+                        <form action="/register" method='POST'>
+                          <!-- 2 column grid layout with text inputs for the first and last names -->
+                          <div class="row">
+                            <div class="col-md-6 mb-4">
+                              <div>
+                                <label class="form-label" for="fname">First name</label>
+                                <input type="text" id="fname" name="fname" class="form-control" />
+                              </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                              <div>
+                                  <label class="form-label" for="lname">Last name</label>
+                                <input type="text" id="lname" name="lname" class="form-control" />
+                              </div>
+                            </div>
+                          </div>
+            
+                          <!-- Email input -->
+                          <div class=" mb-4">
+                              <label class="form-label" for="email">Email address</label>
+                            <input type="email" id="email" name="email" class="form-control" />
+                          </div>
+            
+                          <!-- Password input -->
+                          <div class=" mb-4">
+                              <label class="form-label" for="password">Password</label>
+                            <input type="password" id="password" name="password" class="form-control" />
+                          </div>
+                          <!-- Submit button -->
+                          <button type="submit" class="btn w-100 btn-primary btn-lg btn-block mb-4">
+                            Register
+                          </button>
+                        </form>        
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+                                
+<%- include('../includes/end.ejs') %>

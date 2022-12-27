@@ -1,7 +1,5 @@
 const Product = require('../models/product');
 const Orders = require('../models/order');
-// const cart = require('../models/cart');
-// const { where } = require('sequelize');
 
 exports.getProducts = (req, res, next) => {
     Product.find().then(products => {
@@ -9,7 +7,8 @@ exports.getProducts = (req, res, next) => {
         res.render('./shop/product-list', {
             prods: products,
             docTitle: 'Shop',
-            path: '/products'
+            path: '/products',
+            isAuthenticated: req.session.isLoggedIn
         });
     }).catch(err => {
         console.log(err)
@@ -22,7 +21,8 @@ exports.getIndex = (req, res, next) => {
         res.render('./shop/index', {
             prods: products,
             docTitle: 'Shop',
-            path: '/'
+            path: '/',
+            isAuthenticated: req.session.isLoggedIn
         });
     }).catch(err => {
         console.log(err)
@@ -35,7 +35,8 @@ exports.getProductsDetials = (req, res, next) => {
         res.render('./shop/product-detials', {
             product: product,
             docTitle: product.title,
-            path: '/product/' + product._id
+            path: '/product/' + product._id,
+            isAuthenticated: req.session.isLoggedIn
         })
     }).catch(err => {
         console.log(err);
@@ -50,7 +51,8 @@ exports.getCart = (req, res, next) => {
             res.render('./shop/cart', {
                 products: products,
                 docTitle: 'Your Cart',
-                path: '/cart'
+                path: '/cart',
+                isAuthenticated: req.session.isLoggedIn
             });
         }).catch(err => {
             console.log(err)
@@ -117,19 +119,10 @@ exports.getOrders = (req, res, next) => {
         res.render('./shop/orders', {
             orders: orders,
             docTitle: 'Your Orders',
-            path: '/orders'
+            path: '/orders',
+            isAuthenticated: req.session.isLoggedIn
         });
     }).catch(err => {
         console.log(err);
     });
 }
-
-// exports.getCheckout = (req, res, next) => {
-//     Product.fetchAll(products => {
-//         res.render('./shop/checkout', {
-//             prods: products,
-//             docTitle: 'Shop',
-//             path: '/checkout'
-//         });
-//     });
-// }
