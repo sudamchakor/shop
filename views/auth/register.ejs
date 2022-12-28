@@ -15,6 +15,14 @@
                         <h2 class="fw-bold mb-5">Sign up now</h2>
                         <form action="/register" method='POST'>
                           <!-- 2 column grid layout with text inputs for the first and last names -->
+                          <% if(errorMessage){ %>
+                            <div class="alert alert-danger" role="alert">
+                              <i class="fa fa-warning"></i>
+                              <div>
+                                <%=errorMessage%>
+                              </div>
+                            </div>
+                          <% } %>
                           <div class="row">
                             <div class="col-md-6 mb-4">
                               <div>
@@ -41,6 +49,7 @@
                               <label class="form-label" for="password">Password</label>
                             <input type="password" id="password" name="password" class="form-control" />
                           </div>
+                          <input type="hidden" name="_csrf" value="<%= csrfToken%>">
                           <!-- Submit button -->
                           <button type="submit" class="btn w-100 btn-primary btn-lg btn-block mb-4">
                             Register

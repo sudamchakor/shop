@@ -8,7 +8,6 @@ exports.getProducts = (req, res, next) => {
             prods: products,
             docTitle: 'Shop',
             path: '/products',
-            isAuthenticated: req.session.isLoggedIn
         });
     }).catch(err => {
         console.log(err)
@@ -21,8 +20,7 @@ exports.getIndex = (req, res, next) => {
         res.render('./shop/index', {
             prods: products,
             docTitle: 'Shop',
-            path: '/',
-            isAuthenticated: req.session.isLoggedIn
+            path: '/'
         });
     }).catch(err => {
         console.log(err)
@@ -36,7 +34,6 @@ exports.getProductsDetials = (req, res, next) => {
             product: product,
             docTitle: product.title,
             path: '/product/' + product._id,
-            isAuthenticated: req.session.isLoggedIn
         })
     }).catch(err => {
         console.log(err);
@@ -52,7 +49,6 @@ exports.getCart = (req, res, next) => {
                 products: products,
                 docTitle: 'Your Cart',
                 path: '/cart',
-                isAuthenticated: req.session.isLoggedIn
             });
         }).catch(err => {
             console.log(err)
@@ -98,7 +94,7 @@ exports.createOrder = (req, res, next) => {
 
             const order = new Orders({
                 user: {
-                    name: req.user.name,
+                    email: req.user.email,
                     userId: req.user
                 },
                 products: products
@@ -120,7 +116,6 @@ exports.getOrders = (req, res, next) => {
             orders: orders,
             docTitle: 'Your Orders',
             path: '/orders',
-            isAuthenticated: req.session.isLoggedIn
         });
     }).catch(err => {
         console.log(err);

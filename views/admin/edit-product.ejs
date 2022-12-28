@@ -29,6 +29,7 @@
                 <input type="hidden" name="productId" value="<%= product._id%>"/>
             <%}%>
 			<div class="mb-3">
+				<input type="hidden" name="_csrf" value="<%= csrfToken%>">
 				<button class="btn btn-primary w-25 p-3 bg-custome-primary btn-custome" type="submit" >
 					<% if(editing){%>Update Product<%}else{%>Add Product<%}%>
 				</button>
