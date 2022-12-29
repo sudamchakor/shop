@@ -15,25 +15,24 @@
                         <h2 class="fw-bold mb-5">Sign up now</h2>
                         <form action="/register" method='POST'>
                           <!-- 2 column grid layout with text inputs for the first and last names -->
-                          <% if(errorMessage){ %>
-                            <div class="alert alert-danger" role="alert">
-                              <i class="fa fa-warning"></i>
-                              <div>
-                                <%=errorMessage%>
-                              </div>
-                            </div>
-                          <% } %>
+                          
                           <div class="row">
                             <div class="col-md-6 mb-4">
                               <div>
                                 <label class="form-label" for="fname">First name</label>
-                                <input type="text" id="fname" name="fname" class="form-control" />
+                                <input type="text" value="<%= oldInputs.fname %>" id="fname" name="fname" class="form-control <%= errorMessage['fname']? 'is-invalid':''%>" />
+                                <%if(errorMessage['fname']){%>
+                                  <div class="invalid-feedback"><%=errorMessage['fname']%></div>
+                                <% } %>
                               </div>
                             </div>
                             <div class="col-md-6 mb-4">
                               <div>
                                   <label class="form-label" for="lname">Last name</label>
-                                <input type="text" id="lname" name="lname" class="form-control" />
+                                <input type="text" value="<%= oldInputs.lname %>" id="lname" name="lname" class="form-control <%= errorMessage['lname']? 'is-invalid':''%>" />
+                                <%if(errorMessage['lname']){%>
+                                  <div class="invalid-feedback"><%=errorMessage['lname']%></div>
+                                <% } %>
                               </div>
                             </div>
                           </div>
@@ -41,13 +40,19 @@
                           <!-- Email input -->
                           <div class=" mb-4">
                               <label class="form-label" for="email">Email address</label>
-                            <input type="email" id="email" name="email" class="form-control" />
+                            <input type="email" value="<%= oldInputs.email %>" id="email" name="email" class="form-control <%= errorMessage['email']? 'is-invalid':''%>" />
+                            <%if(errorMessage['email']){%>
+                              <div class="invalid-feedback"><%=errorMessage['email']%></div>
+                            <% } %>
                           </div>
             
                           <!-- Password input -->
                           <div class=" mb-4">
                               <label class="form-label" for="password">Password</label>
-                            <input type="password" id="password" name="password" class="form-control" />
+                            <input type="password" value="<%= oldInputs.password %>" id="password" name="password" class="form-control <%= errorMessage['password']? 'is-invalid':''%>" />
+                            <%if(errorMessage['password']){%>
+                              <div class="invalid-feedback"><%=errorMessage['password']%></div>
+                            <% } %>
                           </div>
                           <input type="hidden" name="_csrf" value="<%= csrfToken%>">
                           <!-- Submit button -->

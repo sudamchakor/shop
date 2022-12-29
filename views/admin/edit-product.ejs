@@ -11,19 +11,31 @@
 		>
 			<div class="mb-3">
 				<label class="form-label" for="'title">Product Title</label>
-				<input class="form-control" type="text" name="title" id="title" value="<%=editing?product.title:''%>"/>
+				<input class="form-control <%= inputErrors['title']? 'is-invalid':''%>" type="text" name="title" id="title" value="<%=product.title%>"/>
+				<%if(inputErrors['title']){%>
+					<div class="invalid-feedback"><%=inputErrors['title']%></div>
+				<% } %>
 			</div>
 			<div class="mb-3">
 				<label class="form-label" for="'imageUrl">Image Url</label>
-				<input class="form-control" type="url" name="imageUrl" id="imageUrl" value="<%=editing?product.imageUrl:''%>"/>
+				<input class="form-control <%= inputErrors['imageUrl']? 'is-invalid':''%>" type="url" name="imageUrl" id="imageUrl" value="<%=product.imageUrl%>"/>
+				<%if(inputErrors['imageUrl']){%>
+					<div class="invalid-feedback"><%=inputErrors['imageUrl']%></div>
+				<% } %>
 			</div>			
 			<div class="mb-3">
 				<label class="form-label" for="'price">Price</label>
-				<input class="form-control" type="number" name="price" id="price" step="0.01" value="<%=editing?product.price:''%>" />
+				<input class="form-control <%= inputErrors['price']? 'is-invalid':''%>" type="number" name="price" id="price" step="0.01" value="<%=product.price%>" />
+				<%if(inputErrors['price']){%>
+					<div class="invalid-feedback"><%=inputErrors['price']%></div>
+				<% } %>
 			</div>
 			<div class="mb-3">
 				<label class="form-label" for="'description">Description</label>
-				<textarea class="form-control" rows="5" name="description" id="description"><%=editing?product.description:''%></textarea>
+				<textarea class="form-control <%= inputErrors['description']? 'is-invalid':''%>" rows="5" name="description" id="description"><%=product.description%></textarea>
+				<%if(inputErrors['description']){%>
+					<div class="invalid-feedback"><%=inputErrors['description']%></div>
+				<% } %>
 			</div>
             <% if(editing){%>
                 <input type="hidden" name="productId" value="<%= product._id%>"/>

@@ -37,3 +37,10 @@ main{
     width: 100%;
     overflow: hidden;
 }
+.card-text{
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-align: justify;
+}
