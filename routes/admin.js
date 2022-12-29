@@ -13,7 +13,7 @@ router.post(
     '/add-product',
     isAuth,
     body('title', 'Title can not be empty.').notEmpty().isLength({ min: 3 }).trim(),
-    body('imageUrl', 'Enter a valid image url').notEmpty().trim().isURL({ require_tld: false }),
+    // body('imageUrl', 'Enter a valid image url').notEmpty().trim().isURL({ require_tld: false }),
     body('price', 'Enter a valid Price.').notEmpty().trim().isFloat(),
     body('description', 'Description can not be empty.').notEmpty().trim().isLength({ min: 10 }),
     adminController.postAddProduct
@@ -24,7 +24,7 @@ router.post(
     '/edit-product',
     isAuth,
     body('title', 'Title can not be empty.').notEmpty().isLength({ min: 3 }).trim(),
-    body('imageUrl', 'Enter a valid image url').notEmpty().trim().isURL({ require_tld: false }),
+    // body('imageUrl', 'Enter a valid image url').notEmpty().trim().isURL({ require_tld: false }),
     body('price', 'Enter a valid Price.').notEmpty().trim().isFloat(),
     body('description', 'Description can not be empty.').notEmpty().trim().isLength({ min: 10 }),
     adminController.postEditProduct

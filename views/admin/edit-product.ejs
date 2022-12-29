@@ -8,6 +8,7 @@
 			class="form-control p-3 mb-5 shadow-4-strong"
 			action="/admin/<%=editing?'edit':'add'%>-product"
 			method="POST"
+			enctype="multipart/form-data"
 		>
 			<div class="mb-3">
 				<label class="form-label" for="'title">Product Title</label>
@@ -17,10 +18,10 @@
 				<% } %>
 			</div>
 			<div class="mb-3">
-				<label class="form-label" for="'imageUrl">Image Url</label>
-				<input class="form-control <%= inputErrors['imageUrl']? 'is-invalid':''%>" type="url" name="imageUrl" id="imageUrl" value="<%=product.imageUrl%>"/>
-				<%if(inputErrors['imageUrl']){%>
-					<div class="invalid-feedback"><%=inputErrors['imageUrl']%></div>
+				<label class="form-label" for="'image">Image</label>
+				<input class="form-control <%= inputErrors['image']? 'is-invalid':''%>" type="file" name="image" id="image" value="<%=product.imageUrl%>"/>
+				<%if(inputErrors['image']){%>
+					<div class="invalid-feedback"><%=inputErrors['image']%></div>
 				<% } %>
 			</div>			
 			<div class="mb-3">
