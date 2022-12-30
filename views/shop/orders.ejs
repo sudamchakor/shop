@@ -2,18 +2,53 @@
 </head>
 <body>
     <%- include('../includes/navigation.ejs')%>
-        <% if(orders.length>0){ %>
-            <ul>
-                <% orders.forEach(order=>{ %>
-                <h1>#<%=order._id%> <a href="/orders/<%= order._id %>">Invoice</a></h1>
-                <ul>
-                    <% order.products.forEach(p=>{ %>
-                        <li><%= p.product.title %> (<%= p.quantity %>) </li>
-                <% }); %>
-                </ul>
-        <% }); %>
-
-            </ul>
+        <% if(orders.length>0){ %>           
+            
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>                            
+                            <th>Order #</th>
+                            <th>Product name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total Amount</th>
+                            <th>Invoice</th>                            
+                        </tr>
+                    </thead>
+                    <tbody class="table-body">
+                        <% orders.forEach(order=>{ %>
+                            <tr class="cell-1 border-top">                            
+                                <td class="fw-bold" colspan="5">#<%=order._id%></td>
+                                <td>
+                                    <a href="/orders/<%= order._id %>">
+                                        <i class="fa fa-download"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <% 
+                            let totalPrice=0;
+                            order.products.forEach(p=>{ console.log(p)
+                                totalPrice = totalPrice + (p.quantity * p.product.price);
+                                %>
+                                <tr class="cell-1">
+                                    <td>
+                                        <img src="<%=p.product.imageUrl%>" alt="" width="75">
+                                    </td>
+                                    <td class="fw-bold"><%= p.product.title %></td>
+                                    <td><%= p.quantity %></td>
+                                    <td>$<%=p.product.price%></td>
+                                    <td>$<%= p.quantity * p.product.price %></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="cell-1 border-bottom">
+                                    <td colspan="4"></td>
+                                    <td class="fw-bold">Total</td>
+                                    <td class="fw-bold">$<%= totalPrice %></td>
+                                </tr>
+                            <% }); %>                            
+                        <% }); %>
+                    </tbody>
+                </table>
         <%}else{%>
             <h1>No Orders</h1>
         <% } %>
