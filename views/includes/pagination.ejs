@@ -1,0 +1,15 @@
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item <%= hasPreviousPage ? '':'disabled' %>">
+        <a class="page-link" href="?page=<%= previousPage %>" tabindex="-1">Previous</a>
+      </li>
+      <% for(let i=1;i<=lastPage;i++){ %>
+      <li class="page-item <%= currentPage === i?'active':''%>">
+        <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+    </li>
+      <% } %>
+      <li class="page-item">
+        <a class="page-link <%= hasNextPage? '':'disabled' %>" href="?page=<%= nextPage %>">Next</a>
+      </li>
+    </ul>
+  </nav>
